@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -20,5 +22,20 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         return view('products.show', compact('product'));
+    }
+
+    public function create(){
+      $vendor_code = Vendor::pluck('vendor_code');
+      return view('products.create', compact('vendor_code'));
+    }
+
+    public function store(ProductStoreRequest $request){
+      $product = new Product();
+      $product->product_name = $request->input('product_name');
+      $product->price = $request->input('price');
+      $product->vendor_code = $request->input('vendor_code');
+      $product->save();
+
+      return redirect("/products/{$product->id}");
     }
 }
