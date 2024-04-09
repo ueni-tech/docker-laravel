@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <h1>商品登録</h1>
 
   @if($errors->any())
-    <ul>
-      @foreach($errors->all() as $error)
-        <li>{{ $error }}</li>
-      @endforeach
-    </ul>
+  <ul>
+    @foreach($errors->all() as $error)
+    <li>{{ $error }}</li>
+    @endforeach
+  </ul>
   @endif
 
-  <form action="{{ route('products.store') }}" method="post" enctype="multipart/form-data">
+  <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <table>
       <tr>
@@ -35,9 +37,9 @@
         <th>仕入先コード</th>
         <td>
           <select name="vendor_code">
-              <option selected value="">選択してください</option>
+            <option selected value="">選択してください</option>
             @foreach($vendor_code as $code)
-              <option value="{{ $code }}">{{ $code }}</option>
+            <option value="{{ $code }}">{{ $code }}</option>
             @endforeach
           </select>
         </td>
@@ -48,8 +50,10 @@
           <input type="file" name="image">
         </td>
       </tr>
+      </tr>
     </table>
     <input type="submit" value="登録">
   </form>
 </body>
+
 </html>
