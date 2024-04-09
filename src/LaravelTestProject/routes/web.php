@@ -6,6 +6,7 @@ use App\Http\Controllers\HelloController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ResponseController;
+use App\Http\Controllers\SessionController;
 use App\Http\Controllers\SignInController;
 use App\Http\Controllers\VendorController;
 
@@ -47,3 +48,8 @@ Route::get('/cookies', [CookieController::class, 'index']);
 Route::get('/cookies/create', [CookieController::class, 'create'])->name('cookies.create');
 Route::post('/cookies/store', [CookieController::class, 'store'])->name('cookies.store');
 Route::delete('/cookies/destroy', [CookieController::class, 'destroy'])->name('cookies.destroy');
+
+Route::get('/sessions', [SessionController::class, 'index']);
+Route::get('/sessions/create', [SessionController::class, 'create'])->name('sessions.create');
+Route::post('/sessions/store', [SessionController::class, 'store'])->name('sessions.store');
+Route::delete('/sessions/destroy', [SessionController::class, 'destroy'])->name('sessions.destroy');
