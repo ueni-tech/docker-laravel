@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProductAddedEvent;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\Product;
 use App\Models\Vendor;
@@ -45,6 +46,8 @@ class ProductController extends Controller
     }
 
     $product->save();
+
+    event(new ProductAddedEvent($product));
 
     return redirect("/products/{$product->id}");
   }
